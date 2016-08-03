@@ -60,13 +60,16 @@ $app->singleton(
 */
 
 // $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
+//     \Illuminate\Session\Middleware\StartSession::class,
+//     \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+//
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+ $app->routeMiddleware([
+     'auth' => \App\Http\Middleware\AuthMiddleware::class,
+ ]);
 
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -78,7 +81,8 @@ $app->singleton(
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+//$app->register(App\Providers\AppServiceProvider::class);
+//$app->register(Illuminate\Session\SessionServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 

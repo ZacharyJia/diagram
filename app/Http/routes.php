@@ -13,8 +13,12 @@
 
 $app->get('/', 'Controller@hello');
 
+$app->get('/login', 'Controller@login');
 
-$app->group(['prefix' => 'auto', 'namespace' => 'App\Http\Controllers'], function ()  use ($app) {
+$app->post('/doLogin', 'Controller@doLogin');
+
+
+$app->group(['prefix' => 'auto', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], function ()  use ($app) {
 
     $app->get('list', 'AutoController@getList');
 
@@ -26,7 +30,7 @@ $app->group(['prefix' => 'auto', 'namespace' => 'App\Http\Controllers'], functio
 });
 
 
-$app->group(['prefix' => 'manual', 'namespace' => 'App\Http\Controllers'], function ()  use ($app) {
+$app->group(['prefix' => 'manual', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], function ()  use ($app) {
 
     $app->get('list', 'ManualController@getList');
 

@@ -74,7 +74,7 @@
                     <td>
                         <h2 style="text-align:center; margin-top:10px;"></h2>
                         <div id="setDateTime">
-                            <input type="submit" value="设置" onclick="setDateTime('auto')"/>
+                            <input type="submit" value="查询" onclick="setDateTime('auto')"/>
                         </div>
                     </td>
                 </tr>
