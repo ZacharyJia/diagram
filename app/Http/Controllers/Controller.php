@@ -35,7 +35,7 @@ class Controller extends BaseController
 
         $next = $request->input('next');
 
-        if ($username == '' && $password == '') {
+        if ($username == 'admin' && $password == 'admin') {
             $_SESSION['isLogin'] = true;
         } else {
             $_SESSION['msg'] = "用户名或密码错误,请重新登录";
