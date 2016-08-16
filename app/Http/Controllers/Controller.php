@@ -12,7 +12,8 @@ class Controller extends BaseController
     //
     public function hello()
     {
-        return view('welcome', ['msg' => 'Hello']);
+//        return view('welcome', ['msg' => 'Hello']);
+        return redirect('login');
     }
 
     public function login(Request $request)
