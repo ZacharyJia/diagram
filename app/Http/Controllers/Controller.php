@@ -12,15 +12,16 @@ class Controller extends BaseController
     //
     public function hello()
     {
-//        return view('welcome', ['msg' => 'Hello']);
         return redirect('login');
     }
 
     public function login(Request $request)
     {
         $next = $request->input('next');
+        if (empty($next)) {
+            $next = "/manual";
+        }
 
-        $_SESSION['isLogin'] = true;
         $msg = '';
         if (isset($_SESSION['msg'])) {
             $msg = $_SESSION['msg'];
@@ -35,12 +36,12 @@ class Controller extends BaseController
         $password = $request->input('password');
 
         $next = $request->input('next');
-
         if ($username == 'admin' && $password == 'admin') {
             $_SESSION['isLogin'] = true;
         } else {
+            unset($_SESSION['isLogin']);
             $_SESSION['msg'] = "用户名或密码错误,请重新登录";
-            return redirect('/login');
+            return redirect('/login?next=' . $next);
         }
 
         if (!empty($next)) {

@@ -16,7 +16,7 @@ class AuthMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        dd($_SESSION['isLogin']);
+//        dd($_SESSION['isLogin']);
         if (isset($_SESSION['isLogin']) && $_SESSION['isLogin'] == true) {
             return $next($request);
         }

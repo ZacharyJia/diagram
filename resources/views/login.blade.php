@@ -12,10 +12,14 @@
 <div class="wrapper">
     <div class="container">
         <h1>欢迎登录</h1>
+        @if($msg)
+            <div style="color: red;">{{$msg}}</div>
+        @endif
 
         <form class="form" id="loginForm" action="doLogin" method="post">
-            <input type="text" id="username" placeholder="用户名" maxlength="16" required>
-            <input type="password" id="password" placeholder="密码" maxlength="16" pattern="(?=^.{4,12}$).*$" title="密码长度至少4位" required >
+            <input type="hidden" name="next" value="{{ $next }}">
+            <input type="text" id="username" name="username" placeholder="用户名" maxlength="16" required>
+            <input type="password" id="password" name="password" placeholder="密码" maxlength="16" pattern="(?=^.{4,12}$).*$" title="密码长度至少4位" required >
             <button type="submit" id="login-button">登录</button>
         </form>
     </div>
