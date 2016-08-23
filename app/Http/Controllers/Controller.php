@@ -50,4 +50,10 @@ class Controller extends BaseController
             return redirect('/manual');
         }
     }
+
+    public function logout()
+    {
+        $_SESSION['isLogin'] = false;
+        return redirect('/login');
+    }
 }
