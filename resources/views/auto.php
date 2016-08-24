@@ -27,7 +27,11 @@
     <nav>
         <a href="manual">手动</a>
         <a href="auto" class="active">自动</a>
+        <a href="logout">注销</a>
     </nav>
+<!--    <nav>-->
+<!--        <a href="logout" style="right:120px; position: absolute;height: 60px;line-height: 60px;">注销</a>-->
+<!--    </nav>-->
 </header>
 
 <div class="wrapper">
@@ -92,7 +96,8 @@
 </div>
 
 <script type="text/javascript">
-    var auto_LegendArray = []; //数组：存放显示传感器类型
+    var auto_LegendName = [];
+    var auto_LegendValue = [];
 
     var auto_MyChart = echarts.init(document.getElementById('main'));
     auto_MyChart.showLoading();
@@ -127,7 +132,7 @@
         },
         legend: {
             left: 'center',
-            data: auto_LegendArray
+            data: auto_LegendName
         },
         calculable: true,
         grid: {
@@ -171,7 +176,7 @@
         animation: false
     };
     auto_MyChart.hideLoading();
-    auto_MyChart.setOption(auto_Option);// 为echarts对象加载数据
+    auto_MyChart.setOption(auto_Option);
 </script>
 
 <!--下拉动画-->

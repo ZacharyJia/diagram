@@ -1,7 +1,7 @@
 /**
  * Created by Weapon on 2016/4/26.
  */
-function loadEChartsData(sensorId, sensorValue,sensorType) {
+function loadEChartsData(sensorId, sensorValue,sensorName,sensorType) {
     if ($("#" + sensorId).is(":checked")) {
         $.ajax({
             type: "GET",
@@ -48,15 +48,16 @@ function loadEChartsData(sensorId, sensorValue,sensorType) {
                             auto_Option.xAxis[0].min = new Date(data[0]["time"]).getTime();
                             auto_Option.xAxis[0].max = new Date(data[data.length-1]["time"]).getTime();
                         }
-                        auto_LegendArray.push(sensorValue);
+                        auto_LegendName.push(sensorName);
+                        auto_LegendValue.push(sensorValue);
                         auto_Option.series.push({
                             smooth: true,
-                            name: sensorValue, //与legend一致
+                            name: sensorName, //与legend一致
                             type: 'line',
                             data:seriesArray
                         });
-                        auto_MyChart.setOption(auto_Option, true);
                         auto_MyChart.hideLoading();
+                        auto_MyChart.setOption(auto_Option, true);
                     }
                     else if (sensorType == "manual"){ //手动类型
                         //设置横坐标的起止时间
@@ -74,15 +75,16 @@ function loadEChartsData(sensorId, sensorValue,sensorType) {
                             manual_Option.xAxis[0].min = new Date(data[0]["time"]).getTime();
                             manual_Option.xAxis[0].max = new Date(data[data.length-1]["time"]).getTime();
                         }
-                        manual_LegendArray.push(sensorValue);//压入当前的传感器
+                        manual_LegendName.push(sensorName);//压入当前的传感器
+                        manual_LegendValue.push(sensorValue);//压入当前的传感器
                         manual_Option.series.push({
                             smooth: true,
-                            name: sensorValue, //与legend一致
+                            name: sensorName, //与legend一致
                             type: 'line',
                             data:seriesArray
                         });
-                        manual_MyChart.setOption(manual_Option,true);
                         manual_MyChart.hideLoading();
+                        manual_MyChart.setOption(manual_Option,true);
                     }
                     else{
                         alert("传入的传感器类型出错");
@@ -98,23 +100,26 @@ function loadEChartsData(sensorId, sensorValue,sensorType) {
         //复选框点击取消选中，动态删除数据
         var i = 0;
         if(sensorType == "auto"){
-            for (i = 0; i < auto_LegendArray.length; i++) {
-                if (auto_LegendArray[i] == sensorValue) break;
+            for (i = 0; i < auto_LegendValue.length; i++) {
+                if (auto_LegendValue[i] == sensorValue) break;
             }
-            auto_LegendArray.splice(i, 1);
+            auto_LegendValue.splice(i, 1);
+            auto_LegendValue.splice(i, 1);
             auto_Option.series.splice(i, 1);
 
+            //auto_MyChart.showLoading();
             auto_MyChart.setOption(auto_Option, true);
-            auto_MyChart.hideLoading();
+
         }
         else if (sensorType == "manual"){
-            for (i = 0; i < manual_LegendArray.length; i++) {
-                if (manual_LegendArray[i] == sensorValue) break;
+            for (i = 0; i < manual_LegendValue.length; i++) {
+                if (manual_LegendValue[i] == sensorValue) break;
             }
-            manual_LegendArray.splice(i, 1);
+            manual_LegendValue.splice(i, 1);
+            manual_LegendName.splice(i,1);
             manual_Option.series.splice(i, 1);
+            //manual_MyChart.showLoading();
             manual_MyChart.setOption(manual_Option,true);
-            manual_MyChart.hideLoading();
         }
         else{
             alert("传入的传感器类型出错");

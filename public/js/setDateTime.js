@@ -23,13 +23,13 @@ function setDateTime(sensorType) {
         manual_Option.xAxis[0].max = endTime.getTime();
         // alert(endTime.getTime());
         manual_MyChart.setOption(manual_Option,true);
-        manual_MyChart.hideLoading();
+        //manual_MyChart.hideLoading();
     }
     else if(sensorType == 'auto'){
         auto_Option.xAxis[0].min = beginTime.getTime();
         auto_Option.xAxis[0].max = endTime.getTime();
         auto_MyChart.setOption(auto_Option,true);
-        auto_MyChart.hideLoading();
+        //auto_MyChart.hideLoading();
     }
     else {
         alert("传入的传感器参数出错");

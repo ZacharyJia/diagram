@@ -43,7 +43,7 @@ function searchSensor(sensorType){
                         document.getElementById("table").appendChild(row);
                         //添加onclick事件
                         $("#" + input.id).attr("onclick",
-                            "loadEChartsData('" + input.id + "','" + input.value + "','"+sensorType+"');");
+                            "loadEChartsData('" + input.id + "','" + input.value + "','" + data[x].name +"','"+sensorType+"');");
                     }
                 }
             }

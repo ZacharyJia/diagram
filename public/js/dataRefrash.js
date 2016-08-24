@@ -4,22 +4,25 @@
 function realTimeRefrash(sensorType) {
     apptimeTicket = setInterval(function () {
         // 获取实时更新数据
-        var array;
+        var arrayValue;
+        var arrayName;
         if(sensorType == "auto"){
-            array = auto_LegendArray;
+            arrayValue = auto_LegendValue;
+            arrayName = auto_LegendName;
         }
         else if(sensorType == "manual"){
-            array = manual_LegendArray;
+            arrayValue = manual_LegendValue;
+            arrayName = manual_LegendName;
         }
         else{
             alert("传感器类型不存在！");
             return;
         }
 
-        for (var x = 0; x < array.length; x++) {
+        for (var x = 0; x < arrayValue.length; x++) {
             $.ajax({
                 type: "GET",
-                url: sensorType+"/data?number=" + array[x],
+                url: sensorType+"/data?number=" + arrayValue[x],
                 async: false, //必须同步
                 success: function (data) {
                     var seriesArray = [];
@@ -63,7 +66,7 @@ function realTimeRefrash(sensorType) {
                             }
                             auto_MyChart.setOption({
                                 series: [{
-                                    name: array[x],
+                                    name: arrayName[x],
                                     data: seriesArray
                                 }]
                             });
@@ -87,7 +90,7 @@ function realTimeRefrash(sensorType) {
                             }
                             manual_MyChart.setOption({
                                 series: [{
-                                    name: array[x],
+                                    name: arrayName[x],
                                     data: seriesArray
                                 }]
                             });

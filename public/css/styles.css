@@ -102,6 +102,7 @@ header nav {
     bottom: 0;
     height: 60px;
     line-height: 60px;
+    padding-left: 10px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.1);
 }
