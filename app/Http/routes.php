@@ -17,7 +17,7 @@ $app->get('/login', 'Controller@login');
 
 $app->post('/doLogin', 'Controller@doLogin');
 
-$app->post('/logout', 'Controller@logout');
+$app->get('/logout', 'Controller@logout');
 
 
 $app->group(['prefix' => 'auto', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], function ()  use ($app) {
